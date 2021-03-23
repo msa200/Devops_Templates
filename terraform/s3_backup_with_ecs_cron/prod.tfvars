@@ -1,0 +1,7 @@
+cluster_name=""
+private_subnet_1=""
+private_subnet_2=""
+ecs_tasks_sg=""
+ecs_task_execution_role=""
+ecs_task_role=""
+vpc_name=""

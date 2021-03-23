@@ -1,0 +1,41 @@
+[{
+    "name": "backup",
+    "image": "${image_name}",  
+    "secrets": [
+        {
+            "name": "BACKUP_S3",
+            "valueFrom": "${BACKUP_S3}"
+        },
+        {
+            "name": "S3_BACKUP_TARGETS",
+            "valueFrom": "${S3_BACKUP_TARGETS}"
+        },
+        {
+            "name": "AWS_ACCESS_KEY_ID",
+            "valueFrom": "${BACKUP_AWS_KEY}"
+        },
+        {
+            "name": "AWS_SECRET_ACCESS_KEY",
+            "valueFrom": "${BACKUP_AWS_SECRET}"
+        }
+      
+    ],
+    "logConfiguration":
+    {
+      "LogDriver" : "awslogs",
+      "Options" : {
+          "awslogs-region": "",
+          "awslogs-group": "${log_group}",
+          "awslogs-stream-prefix": "s3-backup"}
+    },
+  "mountPoints": [
+    {
+        "containerPath": "/data",
+        "sourceVolume": "efs",
+        "readOnly" : false
+    }
+  ]
+    
+
+  }]
+
