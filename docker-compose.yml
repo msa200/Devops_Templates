@@ -1,0 +1,56 @@
+version: '3.3'
+
+services:
+  nginx:
+    build: 
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
+    
+  app:
+    image: 
+    restart: always
+    #command: python manage.py runserver 0.0.0.0:8000
+    command: 
+    ports:
+      - "8000"
+    volumes:
+      - "./migrations/migrations:/app/inspector/migrations"
+    environment:
+      - ENV
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_STORAGE_BUCKET_NAME
+      - AWS_DEFAULT_ACL
+      - DB_NAME
+      - DB_USER
+      - DB_PASSWORD
+      - DB_HOST
+      - REDIS_HOST
+    depends_on:
+      - mysql
+      - redis
+
+  redis:
+    image: redis:6.0.5
+    restart: always
+
+  mysql:
+    image: mysql:8.0.20
+    restart: always
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: 
+    ports:
+      - "3306"
+    volumes:
+      - "mysql:/var/lib/mysql"
+      - "./db_scripts:/docker-entrypoint-initdb.d"
+
+
+volumes:
+   mysql:
