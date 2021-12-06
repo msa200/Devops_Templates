@@ -1,0 +1,19 @@
+[{
+    "name": "redishost",
+    "image": "mahmom/redis:v1.1",
+    "user": "root",
+      "mountPoints": [
+    {
+        "containerPath": "/data",
+        "sourceVolume": "efs",
+        "readOnly" : false
+    }
+  ]      ,
+      "logConfiguration":{
+      "LogDriver" : "awslogs",
+      "Options" : {"awslogs-region": "eu-west-1",
+      "awslogs-group": "redis",
+      "awslogs-stream-prefix": "redis"}
+          }
+    
+  }]

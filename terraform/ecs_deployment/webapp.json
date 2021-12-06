@@ -1,0 +1,28 @@
+
+[{
+    "name": "webapp",
+    "image": "${image_name}",
+    "environment":[
+        { "name" : "input", "value" : "input" }
+    ],   
+    "secrets": [
+          {"name": "input",
+           "valueFrom": "${input}" 
+          }
+    ],
+    "portMappings": [
+        {
+          "hostPort": 9009,
+          "containerPort": 9009,
+          "protocol": "tcp"
+        }
+      ]
+      ,
+      "logConfiguration":{
+      "LogDriver" : "awslogs",
+      "Options" : {"awslogs-region": "eu-central-1",
+      "awslogs-group": "input",
+      "awslogs-stream-prefix": "input"}
+          }
+
+ } ]
