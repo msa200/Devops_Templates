@@ -4,10 +4,3 @@ services:
     image: nginx
     ports:
       - "82:80"
-  db:
-    image: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=mysecretpassword
-      - MYSQL_DATABASE=testdb
-      - MYSQL_USER=testuser
-      - MYSQL_PASSWORD=testpassword
