@@ -3,7 +3,7 @@ services:
   web:
     image: nginx
     ports:
-      - "80:80"
+      - "82:80"
   db:
     image: mysql
     environment:
